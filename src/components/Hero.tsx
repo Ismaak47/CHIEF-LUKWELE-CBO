@@ -14,7 +14,7 @@ export const Hero: React.FC<HeroProps> = ({ onDonateClick, onPageSelect }) => {
       {/* Absolute floating graphics background */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-15"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200')" }}
+        style={{ backgroundImage: "url('/hero-community.jpg')" }}
       ></div>
 
       <div className="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-emerald-900/40"></div>

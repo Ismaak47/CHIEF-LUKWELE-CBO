@@ -1,4 +1,6 @@
 import https from "https";
+import path from "path";
+import fs from "fs";
 
 export default function handler(req: any, res: any) {
   // Set CORS and standard headers
@@ -59,6 +61,14 @@ export default function handler(req: any, res: any) {
   <path d="M 16,42 C 75,50 180,49 295,39 C 322,36.5 342,32 352,24 C 336,31 300,37 250,39.5 C 150,44.5 70,44 16,42 Z" fill="url(#swooshGradDark)" />
   <path d="M 356,10 Q 356,18 364,18 Q 356,18 356,26 Q 356,18 348,18 Q 356,18 356,10 Z" fill="#10B981" />
 </svg>`);
+    return;
+  }
+
+  if (subpath.endsWith("banner-img.png") || subpath.endsWith("hero-community.jpg")) {
+    res.setHeader("Content-Type", "image/jpeg");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    const filePath = path.join(process.cwd(), "public/hero-community.jpg");
+    res.end(fs.readFileSync(filePath));
     return;
   }
 
@@ -152,6 +162,7 @@ export default function handler(req: any, res: any) {
           // 4.5 Replace logo source paths
           modified = modified.replace(/assets\/img\/logo-white\.svg/g, "/demo/tamosa-logo-white-v1.svg");
           modified = modified.replace(/assets\/img\/logo\.svg/g, "/demo/tamosa-logo-v1.svg");
+          modified = modified.replace(/assets\/img\/banner-img\.png/g, "/demo/hero-community.jpg?v=2");
 
           // 5. Replace brand names "Charitics", "CHARITICS", "Tamosa", "TAMOSA" with "CHIEF LUKWELE CBO" throughout the website
           modified = modified.replace(/Charitics/g, "CHIEF LUKWELE CBO");
