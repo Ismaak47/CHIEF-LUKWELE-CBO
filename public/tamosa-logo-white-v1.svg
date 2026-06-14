@@ -1,0 +1,21 @@
+<svg width="380" height="60" viewBox="0 0 380 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&amp;display=swap');
+      .brand-text {
+        font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+        font-weight: 900;
+        font-size: 26px;
+        letter-spacing: -0.2px;
+      }
+    </style>
+    <linearGradient id="swooshGradWhite" x1="16" y1="46" x2="352" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="50%" stop-color="#22D3EE"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+  <text x="15" y="34" fill="#FFFFFF" class="brand-text">CHIEF LUKWELE CBO</text>
+  <path d="M 16,42 C 75,50 180,49 295,39 C 322,36.5 342,32 352,24 C 336,31 300,37 250,39.5 C 150,44.5 70,44 16,42 Z" fill="url(#swooshGradWhite)" />
+  <path d="M 356,10 Q 356,18 364,18 Q 356,18 356,26 Q 356,18 348,18 Q 356,18 356,10 Z" fill="#34D399" />
+</svg>
