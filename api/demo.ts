@@ -164,10 +164,13 @@ export default function handler(req: any, res: any) {
           // 4. Rewrite HTML links
           modified = modified.replace(/href="([^"\/]+.html)"/g, 'href="/demo/$1"');
 
-          // 4.5 Replace logo source paths
+          // 4.5 Replace logo source paths with direct or proxied assets
           modified = modified.replace(/assets\/img\/logo-white\.svg/g, "/demo/tamosa-logo-white-v1.svg");
           modified = modified.replace(/assets\/img\/logo\.svg/g, "/demo/tamosa-logo-v1.svg");
-          modified = modified.replace(/assets\/img\/banner-img\.png/g, "/hero-community.jpg?v=2");
+
+          // Use a case-insensitive regex to find the banner image and replace it with a direct root path.
+          // This avoids going through the /demo/ proxy for the hero image, allowing Vercel to serve it directly from /public.
+          modified = modified.replace(/assets\/img\/banner-img\.(png|jpg|jpeg|webp)/gi, "/hero-community.jpg?v=2");
 
           // 5. Replace brand names "Charitics", "CHARITICS", "Tamosa", "TAMOSA" with "CHIEF LUKWELE CBO" throughout the website
           modified = modified.replace(/Charitics/g, "CHIEF LUKWELE CBO");
