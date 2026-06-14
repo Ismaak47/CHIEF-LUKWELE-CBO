@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import https from "https";
+import fs from "fs";
 
 async function startServer() {
   const app = express();
@@ -70,9 +71,14 @@ async function startServer() {
     }
 
     if (subpath.endsWith("banner-img.png") || subpath.endsWith("hero-community.jpg")) {
-      res.set("Content-Type", "image/jpeg");
-      res.set("Access-Control-Allow-Origin", "*");
-      res.sendFile(path.join(process.cwd(), "public/hero-community.jpg"));
+      const filePath = path.join(process.cwd(), "public/hero-community.jpg");
+      if (fs.existsSync(filePath)) {
+        res.set("Content-Type", "image/jpeg");
+        res.set("Access-Control-Allow-Origin", "*");
+        res.sendFile(filePath);
+      } else {
+        res.redirect("/hero-community.jpg");
+      }
       return;
     }
 
@@ -170,7 +176,7 @@ async function startServer() {
             // 4.5 Replace logo source paths with our brand-new unique filename assets to bypass caching completely
             modified = modified.replace(/assets\/img\/logo-white\.svg/g, "/demo/tamosa-logo-white-v1.svg");
             modified = modified.replace(/assets\/img\/logo\.svg/g, "/demo/tamosa-logo-v1.svg");
-            modified = modified.replace(/assets\/img\/banner-img\.png/g, "/demo/hero-community.jpg?v=2");
+            modified = modified.replace(/assets\/img\/banner-img\.png/g, "/hero-community.jpg?v=2");
 
             // 5. Replace brand names "Charitics", "CHARITICS", "Tamosa", "TAMOSA" with "CHIEF LUKWELE CBO" throughout the website
             modified = modified.replace(/Charitics/g, "CHIEF LUKWELE CBO");
